@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TreehouseTilt : MonoBehaviour {
+    //Singleton
+    public static TreehouseTilt instance;
 
     public float xAngle;
     public float zAngle;
@@ -17,6 +19,11 @@ public class TreehouseTilt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        instance = this;
         objects = new List<WeightedObject>();
         xArm = fieldSize.x/2;
         zArm = fieldSize.y/2;

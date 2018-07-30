@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33606485438914330}
   - component: {fileID: 23627739407838086}
   - component: {fileID: 135654929782719016}
+  - component: {fileID: 114976265990532128}
   m_Layer: 0
   m_Name: acorn
   m_TagString: Untagged
@@ -84,6 +85,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1517307545330266}
   m_Mesh: {fileID: 4300000, guid: b94e56d6bc59f344b866f373a35b70dd, type: 3}
+--- !u!114 &114976265990532128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517307545330266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ead28ac1edb5b45a3cee2e3b75aa84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
 --- !u!135 &135654929782719016
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -10,12 +10,13 @@ public class NaturePlayer : MonoBehaviour {
     public float curWind;
     public float regenRate;
     public float drainRate;
+    public float windForce;
 
     public Image windImage;
 
     private TreehouseTilt treeHouseTilt;
-    private readonly string verticalAxis = "Vertical";
-    private readonly string horizontalAxis = "Horizontal";
+    private readonly string verticalAxis = "Vertical_Wind";
+    private readonly string horizontalAxis = "Horizontal_Wind";
     private WindRepresentation windRep;
     private bool windLockedOut;
 
@@ -56,6 +57,7 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(1);
+                        treeHouseTilt.xWind = windForce;
                     }
                 }
                 else
@@ -64,6 +66,7 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(2);
+                        treeHouseTilt.zWind = windForce;
                     }
                 }
             } else
@@ -74,6 +77,7 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(0);
+                        treeHouseTilt.zWind = windForce;
                     }
                 }
                 else
@@ -82,11 +86,14 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(3);
+                        treeHouseTilt.xWind = windForce;
                     }
                 }
             }
         } else
         {
+            treeHouseTilt.xWind = 0;
+            treeHouseTilt.zWind = 0;
             curWind += regenRate;
             if (curWind >= maxWind)
             {

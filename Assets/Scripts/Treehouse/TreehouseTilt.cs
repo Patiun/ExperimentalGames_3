@@ -11,6 +11,7 @@ public class TreehouseTilt : MonoBehaviour {
     public float maxAngle;
     public Vector2 fieldSize;
     public float rateOfChange = .125f;
+    public float xWind, zWind;
 
     private float xWeight, zWeight;
     private float xArm,zArm;
@@ -41,8 +42,8 @@ public class TreehouseTilt : MonoBehaviour {
             xWeight += wo.weight * displacement.x / xArm;
             zWeight += wo.weight * displacement.z / zArm;
         }
-
-        angles = Vector2.Lerp(angles, new Vector2(xWeight, zWeight),rateOfChange);
+        //Debug.Log(xWeight +" "+ zWeight);
+        angles = Vector2.Lerp(angles, new Vector2(xWeight+xWind, zWeight+zWind),rateOfChange);
         if (angles.magnitude >= maxAngle)
         {
             Debug.Log("OH NO IT'S TILTING TOO FAR");

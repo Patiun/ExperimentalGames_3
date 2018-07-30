@@ -295,6 +295,8 @@ MonoBehaviour:
   maxAngle: 25
   fieldSize: {x: 15, y: 15}
   rateOfChange: 0.125
+  xWind: 0
+  zWind: 0
 --- !u!65 &341612994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ead28ac1edb5b45a3cee2e3b75aa84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 4
 --- !u!54 &426794627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -746,7 +748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1335758621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,6 +765,7 @@ MonoBehaviour:
   curWind: 0
   regenRate: 0.33
   drainRate: 1
+  windForce: 10
   windImage: {fileID: 1221730256}
 --- !u!4 &1335758622
 Transform:

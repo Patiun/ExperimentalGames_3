@@ -28,6 +28,14 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         Move(Input.GetAxis(xDir),Input.GetAxis(zDir));
         Rotate(Input.GetAxis(turnAxis) * rotationSpeed);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+
+            childAnim.SetTrigger("kick");
+
+        }
+
 	}
 
     public void Move(float x, float z)
@@ -49,6 +57,11 @@ public class PlayerController : MonoBehaviour {
             childAnim.SetInteger("state", 0);
             
         }
+
+
+
+        
+
     }
 
     public void Rotate(float angles)

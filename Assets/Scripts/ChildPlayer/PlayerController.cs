@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     public float rotationSpeed;
+    public float kickForce;
 
     private Rigidbody rb;
     private string xDir = "Horizontal";
@@ -35,14 +36,14 @@ public class PlayerController : MonoBehaviour {
         Move(Input.GetAxis(xDir),Input.GetAxis(zDir));
         Rotate(Input.GetAxis(turnAxis) * rotationSpeed);
 
-        if(Input.GetAxis(kick) > 0.3)
+        if(Input.GetButtonDown(kick))
         {
             childAnim.SetTrigger("kick");
             foreach (GameObject k in kickable)
             {
-                Vector3 pos = transform.position;
+                Vector3 pos = k.transform.position - transform.position;
                 pos.y = k.transform.position.y;
-                k.GetComponent<Rigidbody>().AddExplosionForce(100f, pos, 10f);
+                k.GetComponent<Rigidbody>().AddForce(kickForce* (pos + 3*transform.up));
                 k.GetComponent<Collider>().enabled = false;
                 treehouse.Remove(k.GetComponent<WeightedObject>());
             }

@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ead28ac1edb5b45a3cee2e3b75aa84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 8
+  weight: 10
 --- !u!54 &426794627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -796,7 +796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  rotationSpeed: 0.02
+  rotationSpeed: 0.04
+  kickForce: 500
   childAnim: {fileID: 40388276}
   child: {fileID: 40388272}
   kickable: []

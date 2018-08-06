@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     public Animator childAnim;
     public GameObject child;
 
+    public List<GameObject> kickable;
+    private TreehouseTilt treehouse;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour {
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
+        kickable = new List<GameObject>();
+        treehouse = TreehouseTilt.instance;
 	}
 	
 	// Update is called once per frame
@@ -31,9 +36,15 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-
             childAnim.SetTrigger("kick");
-
+            foreach (GameObject k in kickable)
+            {
+                Vector3 pos = transform.position;
+                pos.y = k.transform.position.y;
+                k.GetComponent<Rigidbody>().AddExplosionForce(100f, pos, 10f);
+                k.GetComponent<Collider>().enabled = false;
+                //treehouse.Remove(k.GetComponent<WeightedObject>());
+            }
         }
 
 	}
@@ -60,10 +71,6 @@ public class PlayerController : MonoBehaviour {
             
         }
 
-
-
-        
-
     }
 
     public void Rotate(float angles)
@@ -71,5 +78,21 @@ public class PlayerController : MonoBehaviour {
         Quaternion rot = transform.rotation;
         rot.y += angles;
         transform.rotation = rot;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Kickable")
+        {
+            kickable.Add(other.gameObject);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Kickable")
+        {
+            kickable.Remove(other.gameObject);
+        }
     }
 }

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public bool playing;
 
     private float childWinTime;
-
+    private AudioManager am;
 	// Use this for initialization
 	void Start () {
 		if (instance != null)
@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
         instance = this;
 
         childWinTime = Time.time + timer;
+        am = AudioManager.instance;
+        am.StopAll();
+        am.Play("MetalSong");
 	}
 	
 	// Update is called once per frame

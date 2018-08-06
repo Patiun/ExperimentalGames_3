@@ -72,6 +72,14 @@ public class TreehouseTilt : MonoBehaviour {
         }
     }
 
+    public void Remove(WeightedObject wo)
+    {
+        if (wo != null && objects.Contains(wo))
+        {
+            objects.Remove(wo);
+        }
+    }
+
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

@@ -9,9 +9,10 @@ public class WindRepresentation : MonoBehaviour {
     private Vector3 angles;
     private readonly string slowSpeed = "Vector1_C8D65CF5";
     private readonly string fastSpeed = "Vector1_6E3BFA18";
+    private AudioManager am;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (instance != null)
         {
             Destroy(instance.gameObject);
@@ -21,10 +22,12 @@ public class WindRepresentation : MonoBehaviour {
         windMat.SetFloat(fastSpeed, 0.02f);
         windMat.SetFloat(slowSpeed, 0.02f);
         angles = new Vector3();
+        am = AudioManager.instance;
     }
 	
 	public void StopBlowing()
     {
+        am.Stop("Wind");
         windMat.SetFloat(fastSpeed, 0.02f);
         windMat.SetFloat(slowSpeed, 0.02f);
         Vector3 targetAngle = new Vector3(0, 0, 0);
@@ -34,6 +37,7 @@ public class WindRepresentation : MonoBehaviour {
 
     public void Blow(int dir)
     {
+        am.Play("Wind");
         windMat.SetFloat(fastSpeed, 0.22f);
         windMat.SetFloat(slowSpeed, 0.14f);
         float angle = 0;

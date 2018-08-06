@@ -16,7 +16,7 @@ public class SplashScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timeLeft = splashTime;
-		
+        AudioManager.instance.Play("PeacefulSong");
 	}
 	
 	// Update is called once per frame

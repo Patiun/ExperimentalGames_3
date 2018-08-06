@@ -21,7 +21,7 @@ public class AcornSpawnZone : MonoBehaviour {
         GameObject newAcorn = Instantiate(prefab);
         float x = Random.Range(-xBound, xBound) + transform.position.x;
         float z = Random.Range(-zBound, zBound) + transform.position.z;
-        newAcorn.transform.parent = transform;
+        //newAcorn.transform.parent = transform;
         newAcorn.transform.position = new Vector3(x, transform.position.y, z);
     }
 }

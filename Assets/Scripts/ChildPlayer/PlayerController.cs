@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour {
     public void Move(float x, float z)
     {
         bool still = rb.velocity.magnitude > (0.5f * speed);
-        rb.velocity = (transform.forward * z * -1 + transform.right * x * -1).normalized * speed;
-        child.transform.forward = rb.velocity.normalized * -1;
+        Vector3 velocity = (transform.forward * z * -1 + transform.right * x * -1).normalized * speed;
+        velocity.y = rb.velocity.y;
+        rb.velocity = velocity;
+        //child.transform.forward = rb.velocity.normalized * -1;
 
         bool change = rb.velocity.magnitude > (0.5f * speed);
 

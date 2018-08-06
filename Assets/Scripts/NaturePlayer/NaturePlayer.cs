@@ -14,17 +14,30 @@ public class NaturePlayer : MonoBehaviour {
 
     public Image windImage;
 
+    public int maxAcorns;
+    public int curAcorns;
+    public float acornRegenRate;
+    public GameObject acornPrefab;
+    public AcornSpawnZone[] dropZones;
+
     private TreehouseTilt treeHouseTilt;
     private readonly string verticalAxis = "Vertical_Wind";
     private readonly string horizontalAxis = "Horizontal_Wind";
     private WindRepresentation windRep;
     private bool windLockedOut;
 
-	// Use this for initialization
-	void Start () {
+    private float nextAcornRegen;
+    private readonly float internalAcornCD = 0.5f;
+    private float nextAcornAllowed;
+    private readonly string acornDropButton = "Acorn1";
+    private readonly string acornMultiDropButton = "Acorn2";
+
+    // Use this for initialization
+    void Start () {
         treeHouseTilt = TreehouseTilt.instance;
         curWind = maxWind;
         windRep = WindRepresentation.instance;
+        curAcorns = maxAcorns;
 	}
 	
 	// Update is called once per frame
@@ -33,6 +46,26 @@ public class NaturePlayer : MonoBehaviour {
         {
             UseWind();
             UpdateWindImage();
+        }
+        if (curAcorns > 0)
+        {
+            if (Time.time > nextAcornAllowed)
+            {
+                if (Input.GetAxis(acornDropButton) > 0)
+                {
+                    DropAcorn();
+                    RepresentAcorns();
+                    nextAcornAllowed = Time.time + internalAcornCD;
+                }
+                if (Input.GetAxis(acornMultiDropButton) > 0 && curAcorns > 3)
+                {
+                    DropAcorn();
+                    DropAcorn();
+                    DropAcorn();
+                    RepresentAcorns();
+                    nextAcornAllowed = Time.time + internalAcornCD;
+                }
+            }
         }
 	}
 
@@ -48,6 +81,11 @@ public class NaturePlayer : MonoBehaviour {
         if (!windLockedOut && (x != 0 || z != 0))
         {
             curWind -= drainRate;
+            if (curAcorns < maxAcorns && Time.time > nextAcornRegen)
+            {
+                curAcorns++;
+                nextAcornRegen = Time.time + 1f / acornRegenRate;
+            }
             bool horizontal = (x >= z);
             if (horizontal)
             {
@@ -113,5 +151,17 @@ public class NaturePlayer : MonoBehaviour {
         {
             windImage.fillAmount = (curWind / maxWind);
         }
+    }
+
+    private void DropAcorn()
+    {
+        AcornSpawnZone zone = dropZones[Random.Range(0, dropZones.Length)];
+        zone.SpawnAcorn(acornPrefab);
+        curAcorns--;
+    }
+
+    private void RepresentAcorns()
+    {
+
     }
 }

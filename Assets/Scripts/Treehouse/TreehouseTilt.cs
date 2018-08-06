@@ -47,6 +47,7 @@ public class TreehouseTilt : MonoBehaviour {
         if (angles.magnitude >= maxAngle)
         {
             Debug.Log("OH NO IT'S TILTING TOO FAR");
+            GameManager.instance.WindWin();
         }
 
         Quaternion rotation = Quaternion.Euler(angles.y, transform.rotation.eulerAngles.y, -angles.x);

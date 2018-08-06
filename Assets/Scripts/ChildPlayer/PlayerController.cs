@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     private string xDir = "Horizontal";
     private string zDir = "Vertical";
     private string turnAxis = "Turn";
+    private string kick = "Kick";
 
     public Animator childAnim;
     public GameObject child;
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour {
         Move(Input.GetAxis(xDir),Input.GetAxis(zDir));
         Rotate(Input.GetAxis(turnAxis) * rotationSpeed);
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetAxis(kick) > 0.3)
         {
             childAnim.SetTrigger("kick");
             foreach (GameObject k in kickable)
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour {
                 pos.y = k.transform.position.y;
                 k.GetComponent<Rigidbody>().AddExplosionForce(100f, pos, 10f);
                 k.GetComponent<Collider>().enabled = false;
-                //treehouse.Remove(k.GetComponent<WeightedObject>());
+                treehouse.Remove(k.GetComponent<WeightedObject>());
             }
         }
 

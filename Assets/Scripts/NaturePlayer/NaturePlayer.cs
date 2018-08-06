@@ -19,6 +19,7 @@ public class NaturePlayer : MonoBehaviour {
     public float acornRegenRate;
     public GameObject acornPrefab;
     public AcornSpawnZone[] dropZones;
+    public Image acornImage;
 
     private TreehouseTilt treeHouseTilt;
     private readonly string verticalAxis = "Vertical_Wind";
@@ -163,6 +164,6 @@ public class NaturePlayer : MonoBehaviour {
 
     private void RepresentAcorns()
     {
-
+        acornImage.fillAmount = curAcorns / (float) maxAcorns;
     }
 }

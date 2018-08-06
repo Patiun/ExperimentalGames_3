@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour {
     private AudioManager am;
 	// Use this for initialization
 	void Start () {
-		if (instance != null)
+        Time.timeScale = 1;
+        if (instance != null)
         {
             Destroy(instance.gameObject);
         }
@@ -43,11 +44,13 @@ public class GameManager : MonoBehaviour {
 
     public void ChildWin()
     {
-
+        Time.timeScale = 0;
+        Debug.Log("Child Win!");
     }
 
     public void WindWin()
     {
-
+        Time.timeScale = 0;
+        Debug.Log("Nature Win!");
     }
 }

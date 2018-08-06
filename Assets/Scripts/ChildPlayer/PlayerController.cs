@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
     {
         bool still = rb.velocity.magnitude > (0.5f * speed);
         Vector3 velocity = (transform.forward * z * -1 + transform.right * x * -1).normalized * speed;
-        velocity.y = rb.velocity.y;
+        velocity.y = -1;
         rb.velocity = velocity;
         //child.transform.forward = rb.velocity.normalized * -1;
 

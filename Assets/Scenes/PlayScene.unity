@@ -514,7 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xAngle: 0
   zAngle: 0
-  maxAngle: 27
+  maxAngle: 24
   fieldSize: {x: 15, y: 15}
   rateOfChange: 0.125
   xWind: 0

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -39,10 +38,6 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SPACE.enabled = !SPACE.enabled;
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            SceneManager.LoadScene(3);
         }
 	}
 

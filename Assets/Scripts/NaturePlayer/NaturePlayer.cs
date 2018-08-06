@@ -52,13 +52,13 @@ public class NaturePlayer : MonoBehaviour {
         {
             if (Time.time > nextAcornAllowed)
             {
-                if (Input.GetAxis(acornDropButton) > 0)
+                if (Input.GetButtonDown(acornDropButton))
                 {
                     DropAcorn();
                     RepresentAcorns();
                     nextAcornAllowed = Time.time + internalAcornCD;
                 }
-                if (Input.GetAxis(acornMultiDropButton) > 0 && curAcorns > 3)
+                if (Input.GetButtonDown(acornMultiDropButton)&& curAcorns > 3)
                 {
                     DropAcorn();
                     DropAcorn();
@@ -96,7 +96,7 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(1);
-                        treeHouseTilt.xWind = windForce;
+                        treeHouseTilt.xWind = -windForce;
                     }
                 }
                 else
@@ -116,7 +116,7 @@ public class NaturePlayer : MonoBehaviour {
                     if (windRep != null)
                     {
                         windRep.Blow(0);
-                        treeHouseTilt.zWind = windForce;
+                        treeHouseTilt.zWind = -windForce;
                     }
                 }
                 else
